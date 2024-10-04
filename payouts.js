@@ -20,6 +20,13 @@ function displayPayouts(filteredPayouts = payouts) {
     // Sort the payouts alphabetically by name
     const sortedPayouts = filteredPayouts.sort((a, b) => a.name.localeCompare(b.name));
 
+    // Check if there are any payouts to display
+    if (sortedPayouts.length === 0) {
+        list.innerHTML = '<div class="error-message"><b>Unknown system</b></br>If you go there, please take a screenshot showing system name, ESS timer and Eve-time, and send it to Per Nittengryn on the Brave slack. It will then be added in a future update.</div>'; // Display error message
+        return;
+    }
+
+    // Loop through and display each payout
     sortedPayouts.forEach(payout => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('payout-item');
