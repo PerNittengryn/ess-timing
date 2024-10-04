@@ -1,0 +1,51 @@
+/* Set the background color to dark */
+body {
+    background-color: #333; /* Dark background */
+    color: white;           /* Default white text */
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: white; /* White title */
+}
+
+/* Input styling with dark background and light gray border */
+input {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #444; /* Dark background for input */
+    color: white;           /* White text inside input */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px;     /* Rounded corners */
+}
+
+/* Input placeholder text styling */
+input::placeholder {
+    color: #aaa; /* Light gray placeholder text */
+}
+
+/* Payout item styling */
+.payout-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #444; /* Slightly lighter dark background */
+}
+
+/* Red for urgent countdowns */
+.red {
+    color: #ff4d4d; /* Bright red */
+}
+
+/* Yellow for moderate countdowns, made more readable */
+.yellow {
+    color: #ffcc00; /* Gold-like yellow for better contrast */
+}
+
+/* White text for everything else */
+.black {
+    color: white; /* Default white text */
+}

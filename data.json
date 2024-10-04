@@ -1,0 +1,6 @@
+[
+    { "name": "Alice", "last_payout": "2024-10-04T10:00:00+02:00" },
+    { "name": "Bob", "last_payout": "2024-10-04T04:20:00+02:00" },
+    { "name": "Bob2", "last_payout": "2024-10-04T04:30:00+02:00" },
+    { "name": "Charlie", "last_payout": "2024-10-04T07:45:00+02:00" }
+]
