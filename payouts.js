@@ -12,12 +12,15 @@ async function loadPayouts() {
     }
 }
 
-// Display the list of payouts with countdowns
+// Display the list of payouts with countdowns, sorted alphabetically
 function displayPayouts(filteredPayouts = payouts) {
     const list = document.getElementById('payout-list');
     list.innerHTML = '';  // Clear any previous content
 
-    filteredPayouts.forEach(payout => {
+    // Sort the payouts alphabetically by name
+    const sortedPayouts = filteredPayouts.sort((a, b) => a.name.localeCompare(b.name));
+
+    sortedPayouts.forEach(payout => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('payout-item');
         itemDiv.innerHTML = `
@@ -32,51 +35,29 @@ function displayPayouts(filteredPayouts = payouts) {
 // Update the time remaining for each payout
 function updatePayoutTime(payout) {
     const now = new Date();
+
+    // Parse the last payout time assuming the timestamp is in ISO 8601 format and includes the timezone information
     const lastPayout = new Date(payout.last_payout); 
+    
+    // Calculate the minutes since the last payout
     const minutesSinceLastPayout = Math.floor((now - lastPayout) / (1000 * 60));
+    
+    // Calculate time remaining until the next payout
     const timeRemaining = payoutInterval - (minutesSinceLastPayout % payoutInterval);
     
+    // Update the countdown display
     const countdownElement = document.getElementById(`time-${payout.name}`);
     countdownElement.textContent = `${timeRemaining} minutes`;
 
-    // Remove previous classes
-    countdownElement.classList.remove('red', 'yellow', 'black');
-
-    // Apply the appropriate class
+    // Apply color changes based on time remaining
     if (timeRemaining < 7) {
-        countdownElement.classList.add('red');
+        countdownElement.style.color = 'red';
     } else if (timeRemaining < 20) {
-        countdownElement.classList.add('yellow');
+        countdownElement.style.color = 'yellow';
     } else {
-        countdownElement.classList.add('black');
+        countdownElement.style.color = 'white'; // Default white text
     }
 }
-
-//function updatePayoutTimeOLD(payout) {
-//    const now = new Date();
-//
-//    // Parse the last payout time assuming the timestamp is in ISO 8601 format and includes the timezone information
-//    const lastPayout = new Date(payout.last_payout); 
-//    
-//    // Calculate the minutes since the last payout
-//    const minutesSinceLastPayout = Math.floor((now - lastPayout) / (1000 * 60));
-//    
-//    // Calculate time remaining until the next payout
-//    const timeRemaining = payoutInterval - (minutesSinceLastPayout % payoutInterval);
-//    
-//    // Update the countdown display
-//    const countdownElement = document.getElementById(`time-${payout.name}`);
-//    countdownElement.textContent = `${timeRemaining} minutes`;
-//
-//    // Apply color changes based on time remaining
-//    if (timeRemaining < 7) {
-//        countdownElement.style.color = 'red';
-//    } else if (timeRemaining < 20) {
-//        countdownElement.style.color = 'yellow';
-//    } else {
-//        countdownElement.style.color = 'black'; // Default color
-//    }
-//}
 
 // Filter the payouts by name based on user input
 function filterPayouts() {
