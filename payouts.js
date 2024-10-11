@@ -4,7 +4,7 @@ const payoutInterval = 165; // 165 minutes
 // Fetch data from the static JSON file
 async function loadPayouts() {
     try {
-        const response = await fetch('data.json?v=20241011T1344');
+        const response = await fetch('data.json?v=20241011T1348');
         payouts = await response.json();
         displayPayouts();  // Display the payouts after loading the data
     } catch (error) {
