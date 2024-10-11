@@ -7,6 +7,9 @@ async function loadPayouts() {
         const response = await fetch('data.json?v=20241011T1403');
         payouts = await response.json();
         displayPayouts();  // Display the payouts after loading the data
+        const purpose = document.getElementById('purpose');
+        purpose.innerHTML = `Juicy systems tend to have a short time until next ESS payout. Use this tool to avoid a fruitless trip! Note that Imperium systems are excluded. Current system count: ${payouts.length}.`;
+
     } catch (error) {
         console.error('Error loading payouts:', error);
     }
